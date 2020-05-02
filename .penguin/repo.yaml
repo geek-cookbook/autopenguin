@@ -1,0 +1,15 @@
+name: .penguin
+
+readme:
+  template: generic
+  update: true
+  sections:
+    - title: What is it?
+      body: |
+        its code. for generating READMEs.
+    - title: How to use it?
+      body: |
+        Edit another repo on the funkypenguins-geek-cookbook organization, in the `.penguin` folder
+    - title: Why it exists?
+      body: |
+        Because geeks like automating things (no, we are not just lazy :slightly_smiling_face:)
