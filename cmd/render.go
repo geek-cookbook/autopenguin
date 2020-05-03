@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"os"
 	"path"
+	"reflect"
 	"time"
 
 	"github.com/funkypenguins-geek-cookbook/penguin/pkg/render"
@@ -48,6 +49,7 @@ var renderCmd = &cobra.Command{
 		fmt.Printf("Cloned Repositories\n")
 
 		skippedRepos := []string{}
+		noChanges := []string{}
 
 		i = 0
 		for name := range repos {
@@ -77,6 +79,13 @@ var renderCmd = &cobra.Command{
 			tpl, err := render.GetREADMETemplate(cfg)
 			fatalErrorCheck(err)
 
+			prev, err := ioutil.ReadFile(readme)
+			if err != nil {
+				if !os.IsNotExist(err) {
+					fatalErrorCheck(err)
+				}
+			}
+
 			file, err := os.Create(readme)
 			fatalErrorCheck(err)
 
@@ -85,6 +94,14 @@ var renderCmd = &cobra.Command{
 
 			err = file.Close()
 			fatalErrorCheck(err)
+
+			current, err := ioutil.ReadFile(readme)
+			fatalErrorCheck(err)
+
+			if reflect.DeepEqual(prev, current) {
+				fmt.Printf("%s %s/%s already has an up-to-date README.\n", au.Blue(au.Bold("INFO")), au.Yellow(organization), au.Green(name))
+				noChanges = append(noChanges, name)
+			}
 
 		}
 		if wetRun {
@@ -96,6 +113,12 @@ var renderCmd = &cobra.Command{
 				for _, skipped := range skippedRepos {
 					if skipped == name {
 						fmt.Printf("%s %s/%s was previously skipped. Skipping (Again).\n", au.Blue(au.Bold("INFO")), au.Yellow(organization), au.Green(name))
+						skip = true
+					}
+				}
+				for _, skipped := range noChanges {
+					if skipped == name {
+						fmt.Printf("%s %s/%s had no changes. Skipping.\n", au.Blue(au.Bold("INFO")), au.Yellow(organization), au.Green(name))
 						skip = true
 					}
 				}
@@ -114,12 +137,12 @@ var renderCmd = &cobra.Command{
 				err = repo.Storer.SetReference(ref)
 				fatalErrorCheck(err)
 
-				err = wt.AddGlob("README*")
+				err = wt.AddGlob("README.md")
 				fatalErrorCheck(err)
 				_, err = wt.Commit("Update README (via .penguin)", &git.CommitOptions{
 					Author: &object.Signature{
 						Email: "cookbook@funkypenguin.co.nz",
-						Name:  ".penguin",
+						Name:  "Penguin Tools",
 						When:  time.Now(),
 					},
 				})
