@@ -87,52 +87,55 @@ var renderCmd = &cobra.Command{
 			fatalErrorCheck(err)
 
 		}
-		i = 0
-		for name := range repos {
-			fmt.Printf("Pushing Updates [%d/%d]: %s/%s\n", i, len(repos), au.Bold(au.Yellow(organization)), au.Bold(au.Green(name)))
-			i++
-			skip := false
-			for _, skipped := range skippedRepos {
-				if skipped == name {
-					fmt.Printf("%s %s/%s was previously skipped. Skipping (Again).\n", au.Blue(au.Bold("INFO")), au.Yellow(organization), au.Green(name))
-					skip = true
+		if wetRun {
+			i = 0
+			for name := range repos {
+				fmt.Printf("Pushing Updates [%d/%d]: %s/%s\n", i, len(repos), au.Bold(au.Yellow(organization)), au.Bold(au.Green(name)))
+				i++
+				skip := false
+				for _, skipped := range skippedRepos {
+					if skipped == name {
+						fmt.Printf("%s %s/%s was previously skipped. Skipping (Again).\n", au.Blue(au.Bold("INFO")), au.Yellow(organization), au.Green(name))
+						skip = true
+					}
 				}
+				if skip {
+					continue
+				}
+				directory := path.Join(repoSaveDir, organization, name)
+				repo, err := git.PlainOpen(directory)
+				fatalErrorCheck(err)
+				wt, err := repo.Worktree()
+				fatalErrorCheck(err)
+				headRef, err := repo.Head()
+				fatalErrorCheck(err)
+				ref := plumbing.NewHashReference("refs/heads/readme-update", headRef.Hash())
+
+				err = repo.Storer.SetReference(ref)
+				fatalErrorCheck(err)
+
+				err = wt.AddGlob("README*")
+				fatalErrorCheck(err)
+				_, err = wt.Commit("Update README (via .penguin)", &git.CommitOptions{
+					Author: &object.Signature{
+						Email: "cookbook@funkypenguin.co.nz",
+						Name:  ".penguin",
+						When:  time.Now(),
+					},
+				})
+				fatalErrorCheck(err)
+				err = repo.Push(&git.PushOptions{
+					Auth: &http.BasicAuth{
+						Username: ghUsername,
+						Password: ghPassword,
+					},
+				})
+				notifyErrorCheck(err)
+
 			}
-			if skip {
-				continue
-			}
-			directory := path.Join(repoSaveDir, organization, name)
-			repo, err := git.PlainOpen(directory)
-			fatalErrorCheck(err)
-			wt, err := repo.Worktree()
-			fatalErrorCheck(err)
-			headRef, err := repo.Head()
-			fatalErrorCheck(err)
-			ref := plumbing.NewHashReference("refs/heads/readme-update", headRef.Hash())
-
-			err = repo.Storer.SetReference(ref)
-			fatalErrorCheck(err)
-
-			err = wt.AddGlob("README*")
-			fatalErrorCheck(err)
-			_, err = wt.Commit("Update README (via .penguin)", &git.CommitOptions{
-				Author: &object.Signature{
-					Email: "cookbook@funkypenguin.co.nz",
-					Name:  ".penguin",
-					When:  time.Now(),
-				},
-			})
-			fatalErrorCheck(err)
-			err = repo.Push(&git.PushOptions{
-				Auth: &http.BasicAuth{
-					Username: ghUsername,
-					Password: ghPassword,
-				},
-			})
-			notifyErrorCheck(err)
-
+		} else {
+			fmt.Printf("%s Wet Run was not specified, not committing (try with -w to wet run)", au.Bold(au.Blue("INFO")))
 		}
-
 	},
 }
 
