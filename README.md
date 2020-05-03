@@ -30,4 +30,3 @@ Edit another repo on the funkypenguins-geek-cookbook organization, in the `.peng
 Because geeks like automating things (no, we are not just lazy :slightly_smiling_face:)
 
 
-Here is more generic stuff.
