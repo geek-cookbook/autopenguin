@@ -23,10 +23,11 @@ jobs:
         -u github_actor:${{ secrets.GITHUB_TOKEN }} -L | \
         python2 -c "import zipfile,sys,StringIO;zipfile.ZipFile(StringIO.StringIO(sys.stdin.read())).extractall(sys.argv[1] if len(sys.argv) == 2 else '.')" penguin
         
-        mv penguin/penguin ./run
-        chmod +x ./run
+        
       # Blame github for the unreasonably long command
     - name: Run it!
       run: |
-        ./run render -u github_actor -t ${{ secrets.GITHUB_TOKEN }} -w
+        cd penguin
+        chmod +x ./penguin
+        ./penguin render -u github_actor -t ${{ secrets.GITHUB_TOKEN }} -w
       
