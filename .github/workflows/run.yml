@@ -1,0 +1,29 @@
+name: Runs penguin on everything
+on:
+  schedule:
+  - cron: "0 0 * * *"
+
+jobs:
+  stale:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+    - name: Download latest build
+      run: |
+        curl \
+        $(\
+        curl -s https://${{ secrets.GITHUB_TOKEN }}@api.github.com/repos/funkypenguins-geek-cookbook/penguin/actions/artifacts | \
+        jq '. as $in | [.artifacts[].id] | max as $max | $in | .artifacts[] | select (.id == $max) | .archive_download_url' -r \
+        ) \
+        -u ${{ secrets.GITHUB_TOKEN }} -L | \
+        python2 -c "import zipfile,sys,StringIO;zipfile.ZipFile(StringIO.StringIO(sys.stdin.read())).extractall(sys.argv[1] if len(sys.argv) == 2 else '.')" penguin
+        
+        mv penguin/penguin ./run
+        chmod +x ./run
+      # Blame github for the unreasonably long command
+    - name: Run it!
+      run: |
+        ./run render -u github_actor -t ${{ secrets.GITHUB_TOKEN }}
+      
