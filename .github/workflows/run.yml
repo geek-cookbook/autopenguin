@@ -28,5 +28,5 @@ jobs:
       # Blame github for the unreasonably long command
     - name: Run it!
       run: |
-        ./run render -u github_actor -t ${{ secrets.GITHUB_TOKEN }}
+        ./run render -u github_actor -t ${{ secrets.GITHUB_TOKEN }} -w
       
