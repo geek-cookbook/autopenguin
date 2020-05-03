@@ -1,8 +1,8 @@
 package render
 
 import (
+	"html/template"
 	"io/ioutil"
-	"text/template"
 
 	"github.com/Masterminds/sprig"
 	"github.com/funkypenguins-geek-cookbook/penguin/pkg/repo"
