@@ -4,31 +4,31 @@ import (
 	"io/ioutil"
 	"text/template"
 
+	"github.com/Masterminds/sprig"
 	"github.com/funkypenguins-geek-cookbook/penguin/pkg/repo"
 )
 
 type READMEContext struct {
-	Repo struct{
+	Repo struct {
 		Name string
 	}
-	Sections []struct{
+	Sections []struct {
 		Title string
-		Body string
+		Body  string
 	}
 }
 
-
 func GetREADMEContext(repository repo.RepoConfig) READMEContext {
 	return READMEContext{
-		Repo: struct{Name string}{
+		Repo: struct{ Name string }{
 			Name: repository.Name,
 		},
 		Sections: repository.README.Sections,
 	}
 }
 
-func GetREADMETemplate(repository repo.RepoConfig)(*template.Template, error){
-	tpl := template.New(repository.Name)
+func GetREADMETemplate(repository repo.RepoConfig) (*template.Template, error) {
+	tpl := template.New(repository.Name).Funcs(sprig.FuncMap())
 
 	t, err := ioutil.ReadFile("templates/readme/" + repository.README.Template + ".md")
 	if err != nil {
@@ -37,6 +37,6 @@ func GetREADMETemplate(repository repo.RepoConfig)(*template.Template, error){
 	t2 := string(t)
 	tpl, err = tpl.Parse(t2)
 
-	tpl,err = tpl.ParseGlob("templates/readme/*tpl*")
+	tpl, err = tpl.ParseGlob("templates/readme/*tpl*")
 	return tpl, err
 }
