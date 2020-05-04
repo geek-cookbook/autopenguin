@@ -1,5 +1,9 @@
 name: Run penguin on everything
 on:
+  # Hack to let me rernu this by starring the repo ;) - @funkypenguin
+  watch:
+   types: [started]
+   
   schedule:
   - cron: "0 0 * * *"
   push:
