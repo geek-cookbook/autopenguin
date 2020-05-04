@@ -130,12 +130,6 @@ var renderCmd = &cobra.Command{
 				fatalErrorCheck(err)
 				wt, err := repo.Worktree()
 				fatalErrorCheck(err)
-				headRef, err := repo.Head()
-				fatalErrorCheck(err)
-				ref := plumbing.NewHashReference("refs/heads/readme-update", headRef.Hash())
-
-				err = repo.Storer.SetReference(ref)
-				fatalErrorCheck(err)
 
 				err = wt.AddGlob("README.md")
 				fatalErrorCheck(err)
@@ -153,7 +147,7 @@ var renderCmd = &cobra.Command{
 						Password: ghPassword,
 					},
 				})
-				notifyErrorCheck(err)
+				fatalErrorCheck(err)
 
 			}
 		} else {
