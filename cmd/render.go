@@ -57,12 +57,12 @@ var renderCmd = &cobra.Command{
 			i++
 			directory := path.Join(repoSaveDir, organization, name)
 			readme := path.Join(directory, "README.md")
-			repocfg := path.Join(directory, ".penguin", "repo.yaml")
+			repocfg := path.Join(directory, ".funkypenguin", "repo.yaml")
 
 			cfgf, err := os.Open(repocfg)
 			if err != nil {
 				if os.IsNotExist(err) {
-					fmt.Printf("%s %s does not exist on %s/%s. Skipping.\n", au.Yellow(au.Bold("WARN")), au.Blue(".penguin/repo.yaml"), au.Yellow(organization), au.Green(name))
+					fmt.Printf("%s %s does not exist on %s/%s. Skipping.\n", au.Yellow(au.Bold("WARN")), au.Blue(".funkypenguin/repo.yaml"), au.Yellow(organization), au.Green(name))
 					skippedRepos = append(skippedRepos, name)
 					continue
 
@@ -139,7 +139,7 @@ var renderCmd = &cobra.Command{
 
 				err = wt.AddGlob("README.md")
 				fatalErrorCheck(err)
-				_, err = wt.Commit("Update README (via .penguin)", &git.CommitOptions{
+				_, err = wt.Commit("Update README (via .funkypenguin)", &git.CommitOptions{
 					Author: &object.Signature{
 						Email: "cookbook@funkypenguin.co.nz",
 						Name:  "Penguin Tools",
