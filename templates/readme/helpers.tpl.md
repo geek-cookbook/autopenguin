@@ -16,6 +16,17 @@
 {{- end }}
 {{ end }}
 
+{{ define "how_to_use_chart" }} 
+# How to use it?
+
+Use helm to add the repo:
+
+```
+helm repo add funkypenguin-{{ .Repo.Name }} \
+    https://funkypenguins-geek-cookbook.github.io/{{ .Repo.Name }}/
+```
+{{ end }}
+
 {{ define "sections" }}
 {{ range $i, $section := .Sections }}
 # {{ $section.Title }}
