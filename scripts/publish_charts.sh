@@ -25,6 +25,8 @@ echo "KUBERNETES_VERSION=$KUBERNETES_VERSION"
 echo "KUBEVAL_VERSION=$KUBEVAL_VERSION"
 echo "PATH=$PATH"
 
+find ./
+
 echo '>> Prepare...'
 # mkdir -p /tmp/helm/bin
 # mkdir -p /tmp/helm/publish
