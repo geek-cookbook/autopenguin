@@ -15,7 +15,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-
     steps:
     - name: Download latest build
       run: |
@@ -34,4 +33,9 @@ jobs:
         cd penguin
         chmod +x ./penguin
         ./penguin render -u github_actor -t ${{ secrets.AUTOCHEF_TOKEN }} -w
+
+      # Blame github for the unreasonably long command
+    - name: Publish charts
+      run: |
+        ./scripts/publish_charts.sh      
       

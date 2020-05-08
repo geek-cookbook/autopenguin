@@ -13,7 +13,7 @@ WORKING_DIRECTORY="$PWD"
 [ -z "$HELM_VERSION" ]          && HELM_VERSION=3.2.0
 [ -z "$KUBEVAL_VERSION" ]       && KUBEVAL_VERSION=0.15.0
 [ -z "$KUBERNETES_VERSION" ]    && KUBERNETES_VERSION=1.18.0
-[ -z "$GITHUB_PAGES_REPO" ]     && GITHUB_PAGES_REPO=funkypenguins-geek-cookbook/charts-dev
+[ -z "$GITHUB_PAGES_REPO" ]     && GITHUB_PAGES_REPO=funkypenguins-geek-cookbook/charts
 [ -z "$GITHUB_USERNAME" ]       && GITHUB_USERNAME=funkypenguins-geek-cookbook
 
 echo "GITHUB_PAGES_REPO=$GITHUB_PAGES_REPO"
