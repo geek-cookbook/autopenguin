@@ -5,12 +5,10 @@ set -e
 set -x
 set -o pipefail
 
-WORKING_DIRECTORY="$PWD"
-
 # Set some defaults
 
 [ -z "$GITHUB_PAGES_BRANCH" ]   && GITHUB_PAGES_BRANCH=gh-pages
-[ -z "$HELM_CHARTS_SOURCE" ]    && HELM_CHARTS_SOURCE="$WORKING_DIRECTORY/repos"
+[ -z "$HELM_CHARTS_SOURCE" ]    && HELM_CHARTS_SOURCE="./penguin/repos"
 [ -z "$HELM_VERSION" ]          && HELM_VERSION=3.2.0
 [ -z "$KUBEVAL_VERSION" ]       && KUBEVAL_VERSION=0.15.0
 [ -z "$KUBERNETES_VERSION" ]    && KUBERNETES_VERSION=1.18.0
