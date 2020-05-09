@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/funkypenguins-geek-cookbook/penguin/cmd"
+	"github.com/geek-cookbook/.autopenguin/cmd"
 )
 
 func main() {
