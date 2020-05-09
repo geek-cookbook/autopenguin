@@ -2,7 +2,6 @@
 
 #!/bin/sh
 set -e
-set -x
 set -o pipefail
 
 # Set some defaults
@@ -70,10 +69,10 @@ done
 echo '>>> helm repo index'
 helm repo index to_publish
 
-# echo ">> Publishing to $GITHUB_PAGES_BRANCH branch of $GITHUB_PAGES_REPO"
-# git config user.email "$CIRCLE_USERNAME@users.noreply.github.com"
-# git config user.name "Circle CI"
-# git add .
-# git status
-# git commit -m "Published by Circle CI $CIRCLE_BUILD_URL"
-# git push origin "$GITHUB_PAGES_BRANCH"
+echo ">> Publishing to $GITHUB_PAGES_BRANCH branch of $GITHUB_PAGES_REPO"
+cd to-publish
+git config user.email "funkypenguin-autochef@funkypenguin.co.nz"
+git config user.name "Funky Penguin AutoChef"
+git add .
+git commit -m 'Update dependent charts'
+git push origin git push origin "$GITHUB_PAGES_BRANCH"
