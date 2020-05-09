@@ -65,13 +65,9 @@ jobs:
         done
         helm repo index to_publish
 
-      # Blame github for the unreasonably long command
-    - name: Publish charts
-      run: |
-        cd to_publish
-        git config user.email "funkypenguin-autochef@funkypenguin.co.nz"
-        git config user.name "Funky Penguin AutoChef"
-        git add .
-        git commit -m 'Update dependent charts'
-        git push origin "${{ env.GITHUB_PAGES_BRANCH }}" 
-      
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.CR_TOKEN }}
+        path: to_publish
+        branch: ${{ env.GITHUB_PAGES_BRANCH }}
