@@ -15,4 +15,4 @@ This container is maintained by [Funky Penguin's Geek Cookbook][cookbookurl], a 
 [![Twitch Status](https://img.shields.io/twitch/status/funkypenguinnz?style=for-the-badge&label=LiveGeeking&logoColor=white&logo=twitch&color=black)][twitchurl]
 [![Forums](https://img.shields.io/discourse/topics?color=black&label=Forums&logo=discourse&logoColor=white&server=https%3A%2F%2Fdiscourse.geek-kitchen.funkypenguin.co.nz&style=for-the-badge)][discourseurl]
 [![Twitter](https://img.shields.io/twitter/follow/funkypenguin?style=for-the-badge&label=Tweeps&logoColor=white&logo=twitter&color=black)][twitterurl]
-[![Patreon](https://img.shields.io/badge/Us-black?style=for-the-badge&label=Patreon&logoColor=white&logo=patreon&color=red)][patreonurl]
+[![Patreon](https://img.shields.io/badge/Support-black?style=for-the-badge&label=Patreon&logoColor=white&logo=patreon&color=red)][patreonurl]
