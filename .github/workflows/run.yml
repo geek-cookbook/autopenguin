@@ -68,7 +68,7 @@ jobs:
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{ secrets.CR_TOKEN }}
+        github_token: ${{ secrets.AUTOCHEF_TOKEN }}
         directory: to_publish
         branch: ${{ env.GITHUB_PAGES_BRANCH }}
         repository: ${{ env.GITHUB_PAGES_REPO }}
