@@ -71,3 +71,4 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         directory: to_publish
         branch: ${{ env.GITHUB_PAGES_BRANCH }}
+        repository: ${{ env.GITHUB_PAGES_REPO }}
