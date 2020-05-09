@@ -42,7 +42,7 @@ jobs:
       run: |
         curl \
         $(\
-        curl -s https://github_actor:${{ secrets.GITHUB_TOKEN }}@api.github.com/repos/geek-cookbook/.autopenguin/actions/artifacts | \
+        curl -s https://github_actor:${{ secrets.GITHUB_TOKEN }}@api.github.com/repos/geek-cookbook/autopenguin/actions/artifacts | \
         jq '. as $in | [.artifacts[].id] | max as $max | $in | .artifacts[] | select (.id == $max) | .archive_download_url' -r \
         ) \
         -u github_actor:${{ secrets.GITHUB_TOKEN }} -L | \
