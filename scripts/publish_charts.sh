@@ -73,4 +73,4 @@ git config user.email "funkypenguin-autochef@funkypenguin.co.nz"
 git config user.name "Funky Penguin AutoChef"
 git add .
 git commit -m 'Update dependent charts'
-git push origin git push origin "$GITHUB_PAGES_BRANCH"
+git push origin "$GITHUB_PAGES_BRANCH"
