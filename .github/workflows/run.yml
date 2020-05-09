@@ -11,11 +11,11 @@ on:
     paths: [".github/workflows/*"]
 
 env:
-  GITHUB_PAGES_BRANCH=gh-pages
-  HELM_CHARTS_SOURCE="./penguin/repos"
-  HELM_VERSION=3.2.0
-  GITHUB_PAGES_REPO=funkypenguins-geek-cookbook/charts
-  GITHUB_USERNAME=funkypenguins-geek-cookbook
+  GITHUB_PAGES_BRANCH: gh-pages
+  HELM_CHARTS_SOURCE: "./penguin/repos"
+  HELM_VERSION: 3.2.0
+  GITHUB_PAGES_REPO: funkypenguins-geek-cookbook/charts
+  GITHUB_USERNAME: funkypenguins-geek-cookbook
 
 jobs:
   stale:
