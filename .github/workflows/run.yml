@@ -64,13 +64,21 @@ jobs:
           fi
         done
         helm repo index to_publish
+        
+    - name: Push without action
+      run: |
+        cd to_publish
+        git add .
+        git commit -m 'Update charts'
+        git push "https://funkypenguin-autochef:${{ secret.AUTOCHEF_TOKEN }}@github.com/${{ env.GITHUB_PAGES_REPO }}.git"
+#        git push "${remote_repo}" HEAD:${INPUT_BRANCH} --follow-tags $_FORCE_OPTION $_TAGS;
 
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.AUTOCHEF_TOKEN }}
-        directory: to_publish
-        branch: ${{ env.GITHUB_PAGES_BRANCH }}
-        repository: ${{ env.GITHUB_PAGES_REPO }}
-      env:
-        GITHUB_ACTOR: funkypenguin-autochef
+#    - name: Push changes
+#      uses: ad-m/github-push-action@master
+##      with:
+ #       github_token: ${{ secrets.AUTOCHEF_TOKEN }}
+#        directory: to_publish
+#        branch: ${{ env.GITHUB_PAGES_BRANCH }}
+#        repository: ${{ env.GITHUB_PAGES_REPO }}
+#      env:
+#        GITHUB_ACTOR: funkypenguin-autochef
