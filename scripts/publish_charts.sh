@@ -44,25 +44,27 @@ git clone -b "$GITHUB_PAGES_BRANCH" "https://$GITHUB_USERNAME:$CR_TOKEN@github.c
 
 echo '>> Building charts...'
 find "$HELM_CHARTS_SOURCE" -mindepth 4 -maxdepth 4 -type d | grep charts/ | while read chart; do
-  echo ">>> helm lint $chart"
-  helm lint "$chart"
+  if [ -f $chart/Chart.yaml ]; then
+    echo ">>> helm lint $chart"
+    helm lint "$chart"
 
-#   echo ">>> kubeval $chart"
-#   /root/project/.circleci/prep-kubeval.sh
-#   mkdir -p "/tmp/kubeval/manifests/$chart_name"
-#   helm dep update $chart
-#   helm template $chart --output-dir "/tmp/kubeval/manifests/$chart_name"
-#   kubeval -d "/tmp/kubeval/manifests/$chart_name"
- 
-#   #echo ">>> unittest $chart"
-#   #/root/project/.circleci/prep-unit-tests.sh  
-#   #helm unittest $chart 
+  #   echo ">>> kubeval $chart"
+  #   /root/project/.circleci/prep-kubeval.sh
+  #   mkdir -p "/tmp/kubeval/manifests/$chart_name"
+  #   helm dep update $chart
+  #   helm template $chart --output-dir "/tmp/kubeval/manifests/$chart_name"
+  #   kubeval -d "/tmp/kubeval/manifests/$chart_name"
+  
+  #   #echo ">>> unittest $chart"
+  #   #/root/project/.circleci/prep-unit-tests.sh  
+  #   #helm unittest $chart 
 
-   chart_name="`basename "$chart"`"
-   echo ">>> helm package -d to_publish/$chart_name $chart"
-   mkdir -p "to_publish/$chart_name"
-   helm dep update $chart
-   helm package -d "to_publish/$chart_name" "$chart"
+    chart_name="`basename "$chart"`"
+    echo ">>> helm package -d to_publish/$chart_name $chart"
+    mkdir -p "to_publish/$chart_name"
+    helm dep update $chart
+    helm package -d "to_publish/$chart_name" "$chart"
+  fi
 done
 
 echo '>>> helm repo index'
