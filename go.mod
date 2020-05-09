@@ -1,4 +1,4 @@
-module github.com/funkypenguins-geek-cookbook/penguin
+module github.com/geek-cookbook/autopenguin
 
 go 1.14
 
