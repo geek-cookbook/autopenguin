@@ -44,7 +44,7 @@ jobs:
 
     - name: Pull latest chart repo
       run: |
-        git clone -b "${{ env.GITHUB_PAGES_BRANCH }}" "https://${{ env.GITHUB_USERNAME }}:${{ secret.CR_TOKEN}}@github.com/${{ env.GITHUB_PAGES_REPO }}.git" to_publish
+        git clone -b "${{ env.GITHUB_PAGES_BRANCH }}" "https://${{ env.GITHUB_USERNAME }}:${{ secrets.CR_TOKEN}}@github.com/${{ env.GITHUB_PAGES_REPO }}.git" to_publish
 
     - name: Lint and package charts
       run: |
