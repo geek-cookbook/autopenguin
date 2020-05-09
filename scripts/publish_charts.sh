@@ -34,6 +34,7 @@ echo '>> Prepare...'
 # chmod u+x kubeval
 # mv kubeval /usr/local/bin
 
+set -x
 
 echo ">> Checking out $GITHUB_PAGES_BRANCH branch from $GITHUB_PAGES_REPO"
 rm -rf to_publish
