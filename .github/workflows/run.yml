@@ -18,8 +18,22 @@ env:
   GITHUB_USERNAME: funkypenguins-geek-cookbook
 
 jobs:
-  stale:
+  # Since we're allowing the workflow to be triggered with a star, only trigger if the repo owner performed
+  # the action which triggered us (https://stackoverflow.com/questions/58933155/manual-workflow-triggers-in-github-actions/58965362#58965362)
+  i-can-haz-access: 
+    runs-on: ubuntu-latest
 
+    steps:
+    - uses: octokit/request-action@v2.0.0
+      with:
+        route: GET /repos/:repository/collaborators/${{ github.actor }}
+        repository: ${{ github.repository }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    needs: [i-can-haz-access] # Don't proceed unless authorize step above passed
+    name: Deploy chart
     runs-on: ubuntu-latest
 
     steps:
