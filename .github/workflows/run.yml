@@ -42,9 +42,12 @@ jobs:
         chmod +x ./penguin
         ./penguin render -u github_actor -t ${{ secrets.AUTOCHEF_TOKEN }} -w
 
-    - name: Pull latest chart repo
-      run: |
-        git clone -b "${{ env.GITHUB_PAGES_BRANCH }}" "https://${{ env.GITHUB_USERNAME }}:${{ secrets.CR_TOKEN}}@github.com/${{ env.GITHUB_PAGES_REPO }}.git" to_publish
+    - name: Checkout charts repo
+      uses: actions/checkout@v2
+      with:    
+        repository: ${{ env.GITHUB_PAGES_REPO }}
+        ref: ${{ env.GITHUB_PAGES_BRANCH }}   
+        path: to_publish
 
     - name: Lint and package charts
       run: |
