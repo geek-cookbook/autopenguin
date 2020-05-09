@@ -1,6 +1,6 @@
 name: Run penguin on everything
 on:
-  # Hack to let me rernu this by starring the repo ;) - @funkypenguin
+  # Hack to let me rerun this by starring the repo ;) - @funkypenguin
   watch:
    types: [started]
    
@@ -64,7 +64,8 @@ jobs:
           fi
         done
         helm repo index to_publish
-        
+    
+    # For reason for this, see https://github.com/ad-m/github-push-action/issues/52
     - name: Remove troublesome extra header from actions/checkout results
       run: |
         cd to_publish
