@@ -13,6 +13,6 @@
 [![Twitter](https://img.shields.io/twitter/follow/funkypenguin?style=for-the-badge&label=Tweeps&logoColor=white&logo=twitter&color=black)][twitterurl]
 [![Twitch Status](https://img.shields.io/twitch/status/funkypenguinnz?style=for-the-badge&label=LiveGeeking&logoColor=white&logo=twitch)][twitchurl]
 
-###### :wave: Welcome, traveller :wizard:
+###### :wave: Welcome, traveller!
 > The [Geek Cookbook][cookbookurl] is a collection of geek-friendly "recipes" to run popular applications on [Docker Swarm][dockerurl] or [Kubernetes][k8surl], in a progressive, easy-to-follow format.  ***Come and join us, fellow geeks!*** :neckbeard:
 ---
