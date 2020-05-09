@@ -22,8 +22,6 @@ echo "KUBERNETES_VERSION=$KUBERNETES_VERSION"
 echo "KUBEVAL_VERSION=$KUBEVAL_VERSION"
 echo "PATH=$PATH"
 
-find ./
-
 echo '>> Prepare...'
 # mkdir -p /tmp/helm/bin
 # mkdir -p /tmp/helm/publish
@@ -70,7 +68,7 @@ echo '>>> helm repo index'
 helm repo index to_publish
 
 echo ">> Publishing to $GITHUB_PAGES_BRANCH branch of $GITHUB_PAGES_REPO"
-cd to-publish
+cd to_publish
 git config user.email "funkypenguin-autochef@funkypenguin.co.nz"
 git config user.name "Funky Penguin AutoChef"
 git add .
