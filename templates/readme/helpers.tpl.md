@@ -31,21 +31,15 @@
 Use helm to add the repo:
 
 ```
-helm repo add geek-cookbook \
-  https://geek-cookbook.github.io/charts/
+helm repo add geek-cookbook https://geek-cookbook.github.io/charts/
 ```
 
-Then simply install using helm:
+Then simply install using helm, for example
 
 ```
-helm upgrade --install --namespace {{ .Repo.Name }} {{ .Repo.Name }} \
-  geek-cookbook
+kubectl create namespace {{ .Repo.Name }}
+helm upgrade --install --namespace {{ .Repo.Name }} geek-cookbook/{{ .Repo.Name }}
 ```
-
-<aside class="notice">
-srsly bro? Why such a long name? Because we've moved from a mono-repo for helm charts, to a repo per-chart. This simplifies PR dependencies, and make it easier to track only the charts you're interested
-in, by watching each repo
-</aside>
 
 {{ end }}
 
