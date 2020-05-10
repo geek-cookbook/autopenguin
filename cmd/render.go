@@ -97,7 +97,7 @@ var renderCmd = &cobra.Command{
 			current, err := ioutil.ReadFile(readme)
 			fatalErrorCheck(err)
 
-			if reflect.DeepEqual(prev, current) {
+			if prev == current {
 				fmt.Printf("%s %s/%s already has an up-to-date README.\n", au.Blue(au.Bold("INFO")), au.Yellow(organization), au.Green(name))
 				noChanges = append(noChanges, name)
 			}
