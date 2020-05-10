@@ -1,4 +1,4 @@
-name: Run penguin on everything
+name: Run autopenguin on everything
 on:
   # Hack to let me rerun this by starring the repo ;) - @funkypenguin
   watch:
@@ -12,7 +12,7 @@ on:
 
 env:
   GITHUB_PAGES_BRANCH: gh-pages
-  HELM_CHARTS_SOURCE: "./penguin/repos"
+  HELM_CHARTS_SOURCE: "./autopenguin/repos"
   HELM_VERSION: 3.2.0
   GITHUB_PAGES_REPO: geek-cookbook/charts
   GITHUB_USERNAME: geek-cookbook
@@ -46,15 +46,15 @@ jobs:
         jq '. as $in | [.artifacts[].id] | max as $max | $in | .artifacts[] | select (.id == $max) | .archive_download_url' -r \
         ) \
         -u github_actor:${{ secrets.GITHUB_TOKEN }} -L | \
-        python2 -c "import zipfile,sys,StringIO;zipfile.ZipFile(StringIO.StringIO(sys.stdin.read())).extractall(sys.argv[1] if len(sys.argv) == 2 else '.')" penguin
+        python2 -c "import zipfile,sys,StringIO;zipfile.ZipFile(StringIO.StringIO(sys.stdin.read())).extractall(sys.argv[1] if len(sys.argv) == 2 else '.')" autopenguin
         
         
       # Blame github for the unreasonably long command
     - name: Run it!
       run: |
-        cd penguin
-        chmod +x ./penguin
-        ./penguin render -u github_actor -t ${{ secrets.AUTOCHEF_TOKEN }} -w
+        cd autopenguin
+        chmod +x ./autopenguin
+        ./autopenguin render -u github_actor -t ${{ secrets.AUTOCHEF_TOKEN }} -w
 
     - name: Checkout charts repo
       uses: actions/checkout@v2

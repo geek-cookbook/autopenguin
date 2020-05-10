@@ -37,12 +37,12 @@ jobs:
     - name: Assemble Package
       run: |
         mkdir out
-        chmod +x ./penguin
-        cp ./penguin out
+        chmod +x ./autopenguin
+        cp ./autopenguin out
         cp -r templates/ out/
       
     - name: Upload
       uses: actions/upload-artifact@v2
       with:
-        name: penguin
+        name: autopenguin
         path: out
