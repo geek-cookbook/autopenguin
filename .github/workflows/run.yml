@@ -52,6 +52,7 @@ jobs:
       # Blame github for the unreasonably long command
     - name: Run it!
       run: |
+        find ./
         cd penguin
         chmod +x ./autopenguin
         ./autopenguin render -u github_actor -t ${{ secrets.AUTOCHEF_TOKEN }} -w
