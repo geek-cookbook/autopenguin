@@ -31,15 +31,15 @@
 Use helm to add the repo:
 
 ```
-helm repo add funkypenguins-geek-cookbook-{{ .Repo.Name }} \
-  https://funkypenguins-geek-cookbook.github.io/{{ .Repo.Name }}/
+helm repo add geek-cookbook \
+  https://geek-cookbook.github.io/charts/
 ```
 
 Then simply install using helm:
 
 ```
 helm upgrade --install --namespace {{ .Repo.Name }} {{ .Repo.Name }} \
-  funkypenguins-geek-cookbook-{{ .Repo.Name }}
+  geek-cookbook
 ```
 
 <aside class="notice">

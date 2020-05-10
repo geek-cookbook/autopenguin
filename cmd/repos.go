@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/funkypenguins-geek-cookbook/penguin/pkg/repo"
+	"github.com/geek-cookbook/autopenguin/pkg/repo"
 	"github.com/spf13/cobra"
 )
 

@@ -8,8 +8,8 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/funkypenguins-geek-cookbook/penguin/pkg/render"
-	"github.com/funkypenguins-geek-cookbook/penguin/pkg/repo"
+	"github.com/geek-cookbook/autopenguin/pkg/render"
+	"github.com/geek-cookbook/autopenguin/pkg/repo"
 	git "github.com/go-git/go-git/v5"
 	"github.com/go-git/go-git/v5/plumbing/object"
 	"github.com/google/go-github/github"

@@ -20,7 +20,7 @@ var colors bool
 var repoSaveDir string
 
 func init() {
-	rootCmd.PersistentFlags().StringVarP(&organization, "organization", "o", "funkypenguins-geek-cookbook", "Organization to scan through")
+	rootCmd.PersistentFlags().StringVarP(&organization, "organization", "o", "geek-cookbook", "Organization to scan through")
 	rootCmd.PersistentFlags().StringVarP(&repoSaveDir, "repoSaveDir", "s", "repos", "Directory to save repos to when modifying")
 	rootCmd.PersistentFlags().BoolVarP(&colors, "colors", "c", true, "Enable color in terminal output")
 

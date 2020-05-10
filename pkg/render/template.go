@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 
 	"github.com/Masterminds/sprig"
-	"github.com/funkypenguins-geek-cookbook/penguin/pkg/repo"
+	"github.com/geek-cookbook/autopenguin/pkg/repo"
 )
 
 type READMEContext struct {
