@@ -10,6 +10,10 @@ on:
     branches: ["master"]
     paths: [".github/workflows/*"]
 
+  # If I trigger this from one of my other workflows
+  repository_dispatch:
+    types: [chart_update]    
+
 env:
   GITHUB_PAGES_BRANCH: gh-pages
   HELM_CHARTS_SOURCE: "./autopenguin/repos"
