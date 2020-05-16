@@ -29,6 +29,17 @@
 {{- end }}
 {{ end }}
 
+
+{{ define "why_to_use_chart" }}
+# Why should I use this chart?
+
+For one thing, it's known to be syntactically correct, thanks to the wonders of CI:
+
+![Linting](https://github.com/geek-cookbook/{{ .Repo.Name }}/workflows/Linting/badge.svg)
+![Testing](https://github.com/geek-cookbook/{{ .Repo.Name }}/workflows/Testing/badge.svg)
+
+{{ end }}
+
 {{ define "how_to_use_chart" }} 
 # How to use it?
 
