@@ -69,7 +69,7 @@ jobs:
 
     - name: Lint and package charts
       run: |
-        find "${{ env.HELM_CHARTS_SOURCE }}" -mindepth 4 -maxdepth 4 -type d | grep charts/ -v bitnami | while read chart; do
+        find "${{ env.HELM_CHARTS_SOURCE }}" -mindepth 4 -maxdepth 4 -type d | grep charts/ | grep -v bitnami | while read chart; do
           if [ -f $chart/Chart.yaml ]; then
             echo ">>> helm lint $chart"
             helm lint "$chart"
