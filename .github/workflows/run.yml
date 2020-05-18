@@ -88,6 +88,8 @@ jobs:
       run: |
         cd to_publish
         git config --local --unset-all "http.https://github.com/.extraheader"
+        git config --global user.email "autopenguin@funkypenguin.co.nz"
+        git config --global user.name "AutoPenguin"        
         git add .
         git commit -m 'I <3 charts'
 
