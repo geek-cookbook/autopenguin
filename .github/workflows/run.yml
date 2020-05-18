@@ -89,7 +89,8 @@ jobs:
         cd to_publish
         git config --local --unset-all "http.https://github.com/.extraheader"
         cd -
-        
+        find to_publish
+
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
