@@ -88,8 +88,8 @@ jobs:
       run: |
         cd to_publish
         git config --local --unset-all "http.https://github.com/.extraheader"
-        cd -
-        find to_publish
+        git add .
+        git commit -m 'I <3 charts'
 
     - name: Push changes
       uses: ad-m/github-push-action@master
