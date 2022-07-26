@@ -6,7 +6,6 @@ on:
   push:
     branches: ["master"]
     paths: [".github/workflows/*"]
-
   # If I trigger this from one of my other workflows
   repository_dispatch:
     types: [chart_update]    
